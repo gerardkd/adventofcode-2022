@@ -1,0 +1,22 @@
+{
+  "name": "advent-of-code-2022",
+  "version": "1.0.0",
+  "description": "## To see the results Run the tests using [Bun](https://bun.sh): `bun run day-{x}/puzzle.mjs`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xi-cephei/advent-of-code-2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xi-cephei/advent-of-code-2022/issues"
+  },
+  "homepage": "https://github.com/xi-cephei/advent-of-code-2022#readme",
+  "dependencies": {
+    "@types/node": "^18.11.10"
+  }
+}
