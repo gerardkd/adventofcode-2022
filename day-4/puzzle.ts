@@ -1,4 +1,3 @@
-// Part I
 import { readInput, readLine } from "../utilities/utilities";
 
 const file = readInput(import.meta.url, true);
