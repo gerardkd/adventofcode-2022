@@ -2,28 +2,32 @@ import { readInput } from "../utilities/utilities";
 
 const file = readInput(import.meta.url);
 
-enum Markertype {
+enum MarkerType {
   Message,
   Packet
 }
 
-const addToBuffer = (buffer: string[], input: string, index: number, type: Markertype = Markertype.Packet): number | false => {
-  if (buffer.length > (type === Markertype.Packet ? 3 : 13)) {
+const addToBuffer = (buffer: string[], input: string, index: number, type: MarkerType = MarkerType.Packet): number | false => {
+  // Remove first item from the buffer
+  if (buffer.length > (type === MarkerType.Packet ? 3 : 13)) {
     buffer.shift();
   }
 
+  // Add new item to the buffer
   buffer.push(input);
 
-  if (buffer.length === (type === Markertype.Packet ? 4 : 14)) {
-    const found: string[] = [];
+  // Check current buffer for unique items
+  if (buffer.length === (type === MarkerType.Packet ? 4 : 14)) {
+    const found = new Set<string>();
 
     for (const letter of buffer) {
-      if (found.includes(letter)) {
+      if (found.has(letter)) {
         return false;
       }
-      found.push(letter);
+      found.add(letter);
     }
 
+    // Return found starting position for the marker
     return index + 1;
   }
 
@@ -54,7 +58,7 @@ const addToBuffer = (buffer: string[], input: string, index: number, type: Marke
   const buffer: string[] = [];
 
   for (const [index, char] of file.split("").entries()) {
-    const response = addToBuffer(buffer, char, index, Markertype.Message);
+    const response = addToBuffer(buffer, char, index, MarkerType.Message);
 
     if (typeof response === "number") {
       result = response;
